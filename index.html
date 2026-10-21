@@ -5,33 +5,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="theme-color" content="#b8e8df" />
     <meta name="description" content="Pumpkin Slide: one pumpkin, a trail of cash, and far too much candy. A 3D sliding game." />
-    <title>Pumpkin Slide — Sugar Rush</title>
+    <title>Pumpkin Slide — Sweet Escape</title>
     <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ctext y='.9em' font-size='54'%3E🎃%3C/text%3E%3C/svg%3E" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet" />
-    <script type="module" crossorigin src="/pumpkin-slide-app/assets/index-BYy8dQeg.js"></script>
-    <link rel="stylesheet" crossorigin href="/pumpkin-slide-app/assets/index-DQ7PJunq.css">
+    <script type="module" crossorigin src="/pumpkin-slide-app/assets/index-DZHeL-D-.js"></script>
+    <link rel="stylesheet" crossorigin href="/pumpkin-slide-app/assets/index-Cg0aoaHj.css">
   </head>
   <body>
     <div id="app">
       <div id="scene" aria-label="3D sliding track with a pumpkin, money to collect, and sweet obstacles"></div>
       <div class="vignette" aria-hidden="true"></div>
       <header class="topbar">
-        <a class="brand" href="./" aria-label="Pumpkin Slide, home"><span class="brand-pumpkin" aria-hidden="true">🎃</span><span>PUMPKIN<span class="brand-bottom">SLIDE<span class="brand-dot">.</span></span></span></a>
+        <div class="brand" aria-label="Pumpkin Slide"><span class="brand-pumpkin" aria-hidden="true">🎃</span><span>PUMPKIN<span class="brand-bottom">SLIDE<span class="brand-dot">.</span></span></span></div>
         <div class="scoreboard" aria-label="Run score"><span class="score-coin" aria-hidden="true">$</span><div><span class="small-label">THE LOOT</span><strong id="money">$0</strong></div><span class="score-divider"></span><div class="distance-box"><span class="small-label">DISTANCE</span><strong id="distance">0<span> m</span></strong></div></div>
         <nav class="tools" aria-label="Game options"><button id="sound" class="icon-button" aria-label="Enable sound" title="Enable sound" aria-pressed="false"><i data-lucide="volume-x"></i></button><button id="pause" class="icon-button" aria-label="Pause game" title="Pause game" disabled><i data-lucide="pause"></i></button></nav>
       </header>
-      <aside class="run-info"><div class="life-label">SMALL PUMPKIN. BIG FORTUNE.</div><div id="lives" class="lives" aria-label="3 lives"><span>♥</span><span>♥</span><span>♥</span></div><div class="best"><i data-lucide="trophy"></i><span>Best <b id="best">$0</b></span></div></aside>
-      <div class="chapter"><span class="chapter-line"></span><span>01 / CANDY VALLEY</span></div>
+      <aside class="run-info"><div class="life-label">SMALL PUMPKIN. BIG FORTUNE.</div><div id="lives" class="lives" aria-label="3 lives"><span>♥</span><span>♥</span><span>♥</span></div><div class="best"><i data-lucide="trophy" aria-hidden="true"></i><span>Best <b id="best">$0</b></span></div></aside>
+      <section class="level-hud" aria-label="Current stage">
+        <div class="level-heading"><span class="stage-index">STAGE <b id="level-number">01</b></span><strong id="level-name">Candy Valley</strong><div id="level-dots" class="level-dots" aria-label="Three stages"><span class="active"></span><span></span><span></span></div></div>
+        <div id="level-progress" role="progressbar" aria-label="Level progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><div id="level-progress-fill"></div></div>
+        <span id="level-distance">0 / 240 m</span>
+      </section>
       <div id="streak" class="streak" aria-live="polite"></div>
       <div id="feedback" class="feedback" aria-live="polite"></div>
       <div id="damage" class="damage" aria-hidden="true"></div>
-      <section id="ready" class="start-overlay" aria-label="Start a run"><span class="eyebrow">SUGAR RUSH</span><h1>Cash.<br /><span>Not cupcakes.</span></h1><button id="start" class="primary-button" disabled><span id="start-label">Loading the track</span><i data-lucide="arrow-right"></i></button><div class="start-foot"><span class="live-dot"></span>3 lives. A taste for money.</div></section>
+      <section id="ready" class="start-overlay" aria-label="Start a run">
+        <span class="eyebrow">THE SWEET ESCAPE</span>
+        <h1>Cash.<br /><span>Not cupcakes.</span></h1>
+        <ol class="journey" aria-label="Your journey">
+          <li class="current"><span class="journey-number">01</span><span>Candy<br />Valley</span></li>
+          <li><span class="journey-number">02</span><span>Frosting<br />Heights</span></li>
+          <li><span class="journey-number">03</span><span>Moonlight<br />Mint</span></li>
+        </ol>
+        <button id="start" class="primary-button" disabled><span id="start-label">Loading the track</span><i data-lucide="arrow-right" aria-hidden="true"></i></button>
+      </section>
+      <div id="level-toast" class="level-toast hidden" aria-live="polite" aria-atomic="true"><span class="toast-mark" aria-hidden="true"><i data-lucide="arrow-right"></i></span><div><strong id="level-toast-title">Candy Valley</strong><span id="level-toast-subtitle">Stage 1 of 3</span></div></div>
       <section id="pause-panel" class="center-panel hidden" aria-label="Game paused"><span class="eyebrow">TAKE A BREATHER</span><h2>A sweet little break.</h2><button id="resume" class="primary-button"><i data-lucide="play"></i>Resume</button><button id="restart-paused" class="text-button"><i data-lucide="rotate-ccw"></i>Restart</button></section>
-      <section id="over" class="center-panel hidden" aria-label="Game over"><span id="over-label" class="eyebrow">END OF THE SLIDE</span><h2>Oops. Too sweet.</h2><div class="results"><div><span>Loot</span><strong id="final-money">$0</strong></div><div><span>Distance</span><strong id="final-distance">0 m</strong></div></div><button id="restart" class="primary-button"><i data-lucide="rotate-ccw"></i>Slide again</button><span id="final-streak" class="result-note"></span></section>
-      <footer class="bottom-bar"><div class="rules"><span class="rule"><span class="rule-symbol money-symbol">$</span><span>Cash? <b>Yes.</b></span></span><span class="rule"><span class="rule-symbol candy-symbol">🍬</span><span>Candy? <b>No.</b></span></span></div><div class="keyboard-hints"><kbd>←</kbd><kbd>→</kbd><span>slide</span><kbd>SPACE</kbd><span>jump</span></div><span class="edition">SMALL GAME. BIG SLIDE.</span></footer>
-      <div class="touch-controls" aria-label="Touch controls"><button id="left" aria-label="Slide left"><i data-lucide="chevron-left"></i></button><button id="jump" class="jump-button" aria-label="Jump"><i data-lucide="arrow-up"></i></button><button id="right" aria-label="Slide right"><i data-lucide="chevron-right"></i></button></div>
+      <section id="over" class="center-panel hidden" aria-label="Run results"><span id="over-label" class="eyebrow">END OF THE SLIDE</span><h2>Oops. Too sweet.</h2><span id="final-level" class="final-level">Stage 1 / 3</span><div class="results"><div><span>Loot</span><strong id="final-money">$0</strong></div><div><span>Distance</span><strong id="final-distance">0 m</strong></div></div><button id="restart" class="primary-button"><i data-lucide="rotate-ccw"></i>Slide again</button><span id="final-streak" class="result-note"></span></section>
+      <footer class="bottom-bar"><div class="rules"><span class="rule"><span class="rule-symbol money-symbol">$</span><span>Cash? <b>Yes.</b></span></span><span class="rule"><span class="rule-symbol candy-symbol">🍬</span><span>Candy? <b>No.</b></span></span></div><div class="gesture-hint"><span class="gesture-arrows" aria-hidden="true"><i data-lucide="chevron-left"></i><i data-lucide="chevron-right"></i><i data-lucide="arrow-up"></i></span><span>Swipe to steer · Swipe up to jump</span></div><span class="edition">THREE STAGES. ONE SWEET ESCAPE.</span></footer>
       <div id="fatal" class="fatal hidden" role="alert"><h2>The track couldn’t load.</h2><p id="fatal-message"></p><button class="primary-button" onclick="location.reload()">Try again</button></div>
     </div>
   </body>
